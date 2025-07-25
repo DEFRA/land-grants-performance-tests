@@ -115,7 +115,7 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
   &quot;parcelIds&quot;: [&quot;SD5263-8870&quot;],&#xd;
-  &quot;fields&quot;: [&quot;size&quot;, &quot;actions&quot;]&#xd;
+  &quot;fields&quot;: [&quot;size&quot;]&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
