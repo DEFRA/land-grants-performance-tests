@@ -5,14 +5,12 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="land-grants-api">
-        <intProp name="ThreadGroup.num_threads">20</intProp>
+        <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
-        <longProp name="ThreadGroup.duration">180</longProp>
+        <longProp name="ThreadGroup.duration">60</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -22,7 +20,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <DNSCacheManager guiclass="DNSCachePanel" testclass="DNSCacheManager" testname="DNS Cache Manager" enabled="true">
+        <DNSCacheManager guiclass="DNSCachePanel" testclass="DNSCacheManager" testname="DNS Cache Manager">
           <collectionProp name="DNSCacheManager.servers"/>
           <collectionProp name="DNSCacheManager.hosts"/>
           <boolProp name="DNSCacheManager.clearEachIteration">true</boolProp>
@@ -41,7 +39,7 @@
           <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
           <stringProp name="HTTPSampler.domain">land-grants-api.${__P(env)}.cdp-int.defra.cloud</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -59,7 +57,7 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion">
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
           <collectionProp name="Asserion.test_strings">
             <stringProp name="49586">200</stringProp>
           </collectionProp>
@@ -73,7 +71,7 @@
           <stringProp name="DurationAssertion.duration">3000</stringProp>
         </DurationAssertion>
         <hashTree/>
-        <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="Average Response Time Assertion">
+        <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="Average Response Time Assertion" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -145,10 +143,6 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
-          <stringProp name="ConstantTimer.delay">3000</stringProp>
-        </ConstantTimer>
-        <hashTree/>
         <DNSCacheManager guiclass="DNSCachePanel" testclass="DNSCacheManager" testname="DNS Cache Manager">
           <collectionProp name="DNSCacheManager.servers"/>
           <collectionProp name="DNSCacheManager.hosts"/>
@@ -169,9 +163,9 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
         </CookieManager>
         <hashTree/>
         <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.domain">grants-ui.${__P(env)}.cdp-int.defra.cloud/</stringProp>
           <stringProp name="HTTPSampler.port">3000</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -260,6 +254,43 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           </value>
         </objProp>
         <stringProp name="filename">report.csv</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
