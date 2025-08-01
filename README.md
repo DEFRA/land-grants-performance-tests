@@ -2,10 +2,18 @@
 
 This is the performance test suite for grants-ui and land-grants-api application journeys maintained by Land grants team.
 
-There is a single test for land-grants-api that:
+## grants-ui(find-funding-for-land-or-farms) performance tests:
+There are tests for grants-ui(find-funding-for-land-or-farms) end-to-end application submission journey that:
+- Runs for 60 seconds
+- Ramps up to 10 threads
+- Asserts that all requests receive an HTTP 200 Ok response
+- Asserts that the average response time is under 3000 ms
+- Asserts that no single response is greater that 3000 ms
 
-- Runs for 180 seconds
-- Ramps up to 20 threads
+## land-grants-api performance tests:
+There is a single test for land-grants-api that:
+- Runs for 60 seconds
+- Ramps up to 10 threads
 - Asserts that all requests receive an HTTP 200 Ok response
 - Asserts that the average response time is under 3000 ms
 - Asserts that no single response is greater that 3000 ms
