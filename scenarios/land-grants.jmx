@@ -5,8 +5,6 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <DNSCacheManager guiclass="DNSCachePanel" testclass="DNSCacheManager" testname="DNS Cache Manager">
@@ -16,7 +14,7 @@
         <boolProp name="DNSCacheManager.isCustomResolver">false</boolProp>
       </DNSCacheManager>
       <hashTree/>
-      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager">
         <boolProp name="clearEachIteration">true</boolProp>
         <boolProp name="useExpires">false</boolProp>
         <boolProp name="CacheManager.controlledByThread">false</boolProp>
@@ -122,16 +120,78 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
             </collectionProp>
           </elementProp>
         </HTTPSamplerProxy>
-        <hashTree>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
-            <stringProp name="scriptLanguage">groovy</stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">log.info(sampler.getArguments().getArgument(0).getValue())</stringProp>
-          </JSR223PreProcessor>
-          <hashTree/>
-        </hashTree>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post /payments/calculate">
+          <stringProp name="HTTPSampler.path">/payments/calculate</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;startDate&quot;: &quot;2025-08-05&quot;,&#xd;
+  &quot;landActions&quot;: [&#xd;
+    {&#xd;
+      &quot;sheetId&quot;: &quot;SD6743&quot;,&#xd;
+      &quot;parcelId&quot;: &quot;8083&quot;,&#xd;
+      &quot;sbi&quot;: 0,&#xd;
+      &quot;actions&quot;: [&#xd;
+         {&#xd;
+          &quot;code&quot;: &quot;CMOR1&quot;,&#xd;
+          &quot;quantity&quot;:4.53411078&#xd;
+        }&#xd;
+      ]&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post /actions/validate">
+          <stringProp name="HTTPSampler.path">/actions/validate</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;landActions&quot;: [&#xd;
+    {&#xd;
+      &quot;sheetId&quot;: &quot;SD6743&quot;,&#xd;
+      &quot;parcelId&quot;: &quot;8083&quot;,&#xd;
+      &quot;sbi&quot;: 0,&#xd;
+      &quot;actions&quot;: [&#xd;
+        {&#xd;
+          &quot;code&quot;: &quot;CMOR1&quot;,&#xd;
+          &quot;quantity&quot;:4.53411078&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;code&quot;: &quot;UPL1&quot;,&#xd;
+          &quot;quantity&quot;:4.53411078&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;code&quot;: &quot;UPL2&quot;,&#xd;
+          &quot;quantity&quot;:4.53411078&#xd;
+        }&#xd;
+      ]&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="land-grants-ui">
         <intProp name="ThreadGroup.num_threads">10</intProp>
@@ -141,7 +201,7 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">10</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
@@ -155,10 +215,9 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
         </ConfigTestElement>
         <hashTree/>
-        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion">
           <collectionProp name="Asserion.test_strings">
             <stringProp name="49586">200</stringProp>
-            <stringProp name="50549">302</stringProp>
           </collectionProp>
           <stringProp name="Assertion.custom_message"></stringProp>
           <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
@@ -166,11 +225,11 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           <intProp name="Assertion.test_type">34</intProp>
         </ResponseAssertion>
         <hashTree/>
-        <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Maximum Response Time Assertion" enabled="true">
+        <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Maximum Response Time Assertion">
           <stringProp name="DurationAssertion.duration">3000</stringProp>
         </DurationAssertion>
         <hashTree/>
-        <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="Average Response Time Assertion" enabled="true">
+        <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="Average Response Time Assertion">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -200,39 +259,58 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223Assertion>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /find-funding-for-land-or-farms/start">
-          <stringProp name="HTTPSampler.path">/adding-value/start</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller"/>
         <hashTree>
-          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="crumb">
-            <stringProp name="RegexExtractor.useHeaders">true</stringProp>
-            <stringProp name="RegexExtractor.refname">crumb</stringProp>
-            <stringProp name="RegexExtractor.regex">set-cookie: crumb=(.*?);</stringProp>
-            <stringProp name="RegexExtractor.template">$1$ </stringProp>
-            <stringProp name="RegexExtractor.default">NOT FOUND</stringProp>
-            <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
-            <stringProp name="RegexExtractor.match_number">1</stringProp>
-            <stringProp name="TestPlan.comments">crumb</stringProp>
-            <stringProp name="Sample.scope">all</stringProp>
-          </RegexExtractor>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Start Page">
+            <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/start</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
           <hashTree/>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
-            <stringProp name="scriptLanguage">groovy</stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">def crumb = vars.get(&quot;crumb&quot;)  // Get the crumb variable
-def crumbStripped = crumb?.trim()  // Strip leading/trailing whitespace
-vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped version</stringProp>
-          </JSR223PostProcessor>
-          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Defra Id stub Login Page">
+            <stringProp name="HTTPSampler.domain">fcp-defra-id-stub.${__P(env)}.cdp-int.defra.cloud</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/dcidmtest.onmicrosoft.com/oauth2/authresp</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="crn" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">1102838829</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">crn</stringProp>
+                </elementProp>
+                <elementProp name="password" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">perftesting</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">password</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Extract crumb">
+              <stringProp name="XPathExtractor.default"></stringProp>
+              <stringProp name="XPathExtractor.refname">CRUMB</stringProp>
+              <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
+              <stringProp name="XPathExtractor.xpathQuery">//input[@name=&apos;crumb&apos;]/@value</stringProp>
+              <boolProp name="XPathExtractor.validate">false</boolProp>
+              <boolProp name="XPathExtractor.tolerant">true</boolProp>
+              <boolProp name="XPathExtractor.namespace">false</boolProp>
+            </XPathExtractor>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/start">
           <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/start</stringProp>
@@ -245,7 +323,7 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
@@ -265,7 +343,7 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
@@ -274,8 +352,8 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/land-details">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/land-details</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/confirm-you-will-be-eligible">
+          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/confirm-you-will-be-eligible</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -285,24 +363,17 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
-              </elementProp>
-              <elementProp name="hasCheckedLandIsUpToDate" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">true</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">hasCheckedLandIsUpToDate</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/agreement-name">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/agreement-name</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/confirm-your-land-details-are-up-to-date">
+          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/confirm-your-land-details-are-up-to-date</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -312,17 +383,10 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
-              </elementProp>
-              <elementProp name="agreementName" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">Perf Test Agreement</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">agreementName</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -339,14 +403,14 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
               </elementProp>
               <elementProp name="selectedLandParcel" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">SD6943-2399</stringProp>
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">SD6743-8083</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">selectedLandParcel</stringProp>
@@ -355,8 +419,8 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/choose-which-actions-to-do">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/choose-which-actions-to-do</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/select-actions-for-land-parcel">
+          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/select-actions-for-land-parcel</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -366,45 +430,17 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
               </elementProp>
-              <elementProp name="selectedActions" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+              <elementProp name="landAction" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">CMOR1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">selectedActions</stringProp>
-              </elementProp>
-              <elementProp name="qty-CMOR1" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">3.01241373</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">qty-CMOR1</stringProp>
-              </elementProp>
-              <elementProp name="qty-UPL1" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">qty-UPL1</stringProp>
-              </elementProp>
-              <elementProp name="qty-UPL2" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">qty-UPL2</stringProp>
-              </elementProp>
-              <elementProp name="qty-UPL3" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">qty-UPL3</stringProp>
+                <stringProp name="Argument.name">landAction</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -421,37 +457,17 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
               </elementProp>
               <elementProp name="addMoreActions" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">false</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">addMoreActions</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/summary">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/summary</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="crumb" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">crumb</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -468,13 +484,13 @@ vars.put(&quot;crumbStripped&quot;, crumbStripped)  // Store the stripped versio
             <collectionProp name="Arguments.arguments">
               <elementProp name="crumb" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${crumbStripped}</stringProp>
+                <stringProp name="Argument.value">${CRUMB}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">crumb</stringProp>
               </elementProp>
               <elementProp name="action" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">send</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
