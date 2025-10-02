@@ -11,6 +11,7 @@ fi
 JM_SCENARIOS=${JM_HOME}/scenarios
 JM_REPORTS=${JM_HOME}/reports
 JM_LOGS=${JM_HOME}/logs
+JM_DATA=${JM_HOME}/data
 
 mkdir -p ${JM_REPORTS} ${JM_LOGS}
 
@@ -19,7 +20,7 @@ REPORTFILE=${NOW}-perftest-${TEST_SCENARIO}-report.csv
 LOGFILE=${JM_LOGS}/perftest-${TEST_SCENARIO}.log
 
 # Run the test suite
-jmeter -n -t ${SCENARIOFILE} -e -l "${REPORTFILE}" -o ${JM_REPORTS} -j ${LOGFILE} -f -Jenv="${ENVIRONMENT}"
+jmeter -n -t ${SCENARIOFILE} -e -l "${REPORTFILE}" -o ${JM_REPORTS} -j ${LOGFILE} -f -Jenv="${ENVIRONMENT}" -JcsvPath="${JM_DATA}"
 test_exit_code=$?
 
 # Publish the results into S3 so they can be displayed in the CDP Portal
