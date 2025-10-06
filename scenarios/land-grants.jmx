@@ -295,8 +295,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
         <hashTree/>
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Start Page" enabled="true">
-            <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Start Page">
+            <stringProp name="HTTPSampler.path">/farm-payments</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -346,8 +346,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
             <hashTree/>
           </hashTree>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/confirm-farm-details" enabled="true">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/confirm-farm-details</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-farm-details">
+          <stringProp name="HTTPSampler.path">/farm-payments/confirm-farm-details</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -366,8 +366,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/confirm-you-will-be-eligible" enabled="true">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/confirm-you-will-be-eligible</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-you-will-be-eligible">
+          <stringProp name="HTTPSampler.path">/farm-payments/confirm-you-will-be-eligible</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -386,8 +386,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/confirm-your-land-details-are-up-to-date" enabled="true">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/confirm-your-land-details-are-up-to-date</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-your-land-details-are-up-to-date">
+          <stringProp name="HTTPSampler.path">/farm-payments/confirm-your-land-details-are-up-to-date</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -406,8 +406,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/select-land-parcel" enabled="true">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/select-land-parcel</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/select-land-parcel">
+          <stringProp name="HTTPSampler.path">/farm-payments/select-land-parcel</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -433,8 +433,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/select-actions-for-land-parcel" enabled="true">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/select-actions-for-land-parcel</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/select-actions-for-land-parcel">
+          <stringProp name="HTTPSampler.path">/farm-payments/select-actions-for-land-parcel</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -460,8 +460,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/check-selected-land-actions" enabled="true">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/check-selected-land-actions</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/check-selected-land-actions">
+          <stringProp name="HTTPSampler.path">/farm-payments/check-selected-land-actions</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -487,8 +487,8 @@ JMeterUtils.setProperty(&quot;totalResponseTimeMs&quot;, String.valueOf(totalRes
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /find-funding-for-land-or-farms/submit-your-application" enabled="true">
-          <stringProp name="HTTPSampler.path">/find-funding-for-land-or-farms/submit-your-application</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/submit-your-application">
+          <stringProp name="HTTPSampler.path">/farm-payments/submit-your-application</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
