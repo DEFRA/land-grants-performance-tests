@@ -38,8 +38,8 @@
           </elementProp>
           <elementProp name="csv_path" elementType="Argument">
             <stringProp name="Argument.name">csv_path</stringProp>
-            <stringProp name="Argument.value">${__P(csv)}</stringProp>
-            <stringProp name="Argument.desc">set to ${__P(csv)} by default</stringProp>
+            <stringProp name="Argument.value">${__P(csv_path)}</stringProp>
+            <stringProp name="Argument.desc">set to ${__P(csv_path)} by default</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
