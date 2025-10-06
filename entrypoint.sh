@@ -19,8 +19,10 @@ SCENARIOFILE=${JM_SCENARIOS}/${TEST_SCENARIO}.jmx
 REPORTFILE=${NOW}-perftest-${TEST_SCENARIO}-report.csv
 LOGFILE=${JM_LOGS}/perftest-${TEST_SCENARIO}.log
 
+echo "data path: ${JM_DATA}"
+
 # Run the test suite
-jmeter -n -t ${SCENARIOFILE} -e -l "${REPORTFILE}" -o ${JM_REPORTS} -j ${LOGFILE} -f -Jenv="${ENVIRONMENT}" -JcsvPath="${JM_DATA}"
+jmeter -n -t ${SCENARIOFILE} -e -l "${REPORTFILE}" -o ${JM_REPORTS} -j ${LOGFILE} -f -Jenv="${ENVIRONMENT}" -Jcsv="${JM_DATA}"
 test_exit_code=$?
 
 # Publish the results into S3 so they can be displayed in the CDP Portal
