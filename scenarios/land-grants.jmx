@@ -113,7 +113,7 @@
           </elementProp>
           <elementProp name="csv_path" elementType="Argument">
             <stringProp name="Argument.name">csv_path</stringProp>
-            <stringProp name="Argument.value">/Users/naraharimiriyala/defra-repos/land-grants-performance-tests/data</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.desc"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -160,11 +160,11 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Human Interaction Delay" enabled="true">
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Human Interaction Delay">
           <stringProp name="ConstantTimer.delay">3000</stringProp>
         </ConstantTimer>
         <hashTree/>
-        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
           <stringProp name="HTTPSampler.domain">${grants_ui_base_url}</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -173,7 +173,7 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
           <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
         </ConfigTestElement>
         <hashTree/>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CRNs and Land Parcels CSV" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CRNs and Land Parcels CSV">
           <stringProp name="filename">${csv_path}/crns_and_land_parcels.csv</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="variableNames">crn,password,sbi,land_parcel,action,available_area</stringProp>
