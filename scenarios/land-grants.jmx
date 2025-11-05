@@ -16,13 +16,13 @@
         <boolProp name="DNSCacheManager.isCustomResolver">false</boolProp>
       </DNSCacheManager>
       <hashTree/>
-      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager">
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
         <boolProp name="clearEachIteration">true</boolProp>
         <boolProp name="useExpires">false</boolProp>
         <boolProp name="CacheManager.controlledByThread">false</boolProp>
       </CacheManager>
       <hashTree/>
-      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
         <collectionProp name="CookieManager.cookies"/>
         <boolProp name="CookieManager.clearEachIteration">true</boolProp>
         <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
@@ -87,7 +87,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables only required to run locally" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables only required to run locally">
         <collectionProp name="Arguments.arguments">
           <elementProp name="api_base_url" elementType="Argument">
             <stringProp name="Argument.name">api_base_url</stringProp>
@@ -113,7 +113,7 @@
           </elementProp>
           <elementProp name="csv_path" elementType="Argument">
             <stringProp name="Argument.name">csv_path</stringProp>
-            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.value">/Users/naraharimiriyala/defra-repos/land-grants-performance-tests/data</stringProp>
             <stringProp name="Argument.desc"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -125,7 +125,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="setUp Thread Group">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="setUp Thread Group" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -160,11 +160,11 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Human Interaction Delay">
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Human Interaction Delay" enabled="true">
           <stringProp name="ConstantTimer.delay">3000</stringProp>
         </ConstantTimer>
         <hashTree/>
-        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
           <stringProp name="HTTPSampler.domain">${grants_ui_base_url}</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -191,11 +191,11 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
           <stringProp name="filename"></stringProp>
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="script">// config
-long maxResponseTimeMs = 3000L
+long maxResponseTimeMs = 100L
 long minimumSampleSize = 5L
 
 // skip Defra ID stub requests
-if (prev.getSampleLabel().contains(&quot;Defra ID Stub&quot;)) {
+if (prev.getSampleLabel().contains(&quot;Defra Id stub&quot;) || prev.getSampleLabel().contains(&quot;Clear Application State&quot;)) {
 	return
 }
 
@@ -225,7 +225,7 @@ synchronized (lock) {
 </stringProp>
         </JSR223Assertion>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Start Page">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Start Page" enabled="true">
           <stringProp name="HTTPSampler.path">/farm-payments</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -236,7 +236,7 @@ synchronized (lock) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Defra Id stub Login Page">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Defra Id stub Login Page" enabled="true">
           <stringProp name="HTTPSampler.domain">${defra_id__stub_url}</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/dcidmtest.onmicrosoft.com/oauth2/authresp</stringProp>
@@ -264,7 +264,7 @@ synchronized (lock) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State" enabled="true">
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/farm-payments/clear-application-state</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -371,7 +371,7 @@ synchronized (lock) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-your-land-details-are-up-to-date" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-your-land-details-are-up-to-date">
           <stringProp name="HTTPSampler.path">/farm-payments/confirm-your-land-details-are-up-to-date</stringProp>
           <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -609,7 +609,7 @@ synchronized (lock) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State">
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/farm-payments/clear-application-state</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -778,7 +778,7 @@ synchronized (lock) {
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
