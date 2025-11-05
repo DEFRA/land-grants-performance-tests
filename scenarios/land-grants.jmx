@@ -87,7 +87,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables only required to run locally">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables only required to run locally" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="api_base_url" elementType="Argument">
             <stringProp name="Argument.name">api_base_url</stringProp>
@@ -191,8 +191,8 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
           <stringProp name="filename"></stringProp>
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="script">// config
-long maxResponseTimeMs = 100L
-long minimumSampleSize = 5L
+long maxResponseTimeMs = 3000L
+long minimumSampleSize = 10L
 
 // skip Defra ID stub requests
 if (prev.getSampleLabel().contains(&quot;Defra Id stub&quot;) || prev.getSampleLabel().contains(&quot;Clear Application State&quot;)) {
@@ -778,7 +778,7 @@ synchronized (lock) {
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
