@@ -28,7 +28,7 @@
         <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
       </CookieManager>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="grants_ui_base_url" elementType="Argument">
             <stringProp name="Argument.name">grants_ui_base_url</stringProp>
@@ -65,7 +65,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="setUp Thread Group">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="setUp Thread Group" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -87,7 +87,7 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="land-grants-ui">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="land-grants-ui" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${user_count}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${ramp_up_period_seconds}</stringProp>
         <stringProp name="ThreadGroup.duration">${duration_seconds}</stringProp>
@@ -100,11 +100,11 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Human Interaction Delay">
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Human Interaction Delay" enabled="true">
           <stringProp name="ConstantTimer.delay">3000</stringProp>
         </ConstantTimer>
         <hashTree/>
-        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
           <stringProp name="HTTPSampler.domain">${grants_ui_base_url}</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -113,7 +113,7 @@ props.setProperty(&apos;accumulatedResponseTimeMs&apos;, &apos;0&apos;)</stringP
           <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
         </ConfigTestElement>
         <hashTree/>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CRNs and Land Parcels CSV">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CRNs and Land Parcels CSV" enabled="true">
           <stringProp name="filename">${csv_path}/crns_and_land_parcels.csv</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="variableNames">crn,password,sbi,land_parcel,action1,action2,action3,available_area</stringProp>
@@ -165,7 +165,7 @@ synchronized (lock) {
 </stringProp>
         </JSR223Assertion>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Start Page">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Start Page" enabled="true">
           <stringProp name="HTTPSampler.path">/farm-payments</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -176,7 +176,7 @@ synchronized (lock) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Defra Id stub Login Page">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Defra Id stub Login Page" enabled="true">
           <stringProp name="HTTPSampler.domain">${defra_id__stub_url}</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/dcidmtest.onmicrosoft.com/oauth2/authresp</stringProp>
@@ -204,7 +204,7 @@ synchronized (lock) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State" enabled="true">
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/farm-payments/clear-application-state</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -216,7 +216,7 @@ synchronized (lock) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Extract crumb">
+          <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Extract crumb" enabled="true">
             <stringProp name="XPathExtractor.default"></stringProp>
             <stringProp name="XPathExtractor.refname">CRUMB</stringProp>
             <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
@@ -227,7 +227,7 @@ synchronized (lock) {
           </XPathExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-farm-details">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-farm-details" enabled="true">
           <stringProp name="HTTPSampler.path">/farm-payments/confirm-farm-details</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -257,7 +257,7 @@ synchronized (lock) {
             <intProp name="Assertion.test_type">34</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="-1334199001">Confirm you will be eligible</stringProp>
             </collectionProp>
@@ -269,7 +269,7 @@ synchronized (lock) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-you-will-be-eligible">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/confirm-you-will-be-eligible" enabled="true">
           <stringProp name="HTTPSampler.path">/farm-payments/confirm-you-will-be-eligible</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -403,7 +403,7 @@ synchronized (lock) {
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/select-actions-for-land-parcel">
-          <stringProp name="HTTPSampler.path">/farm-payments/select-actions-for-land-parcel</stringProp>
+          <stringProp name="HTTPSampler.path">/farm-payments/select-actions-for-land-parcel/?parcelId=${land_parcel}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -465,7 +465,7 @@ synchronized (lock) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/check-selected-land-actions">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/check-selected-land-actions" enabled="true">
           <stringProp name="HTTPSampler.path">/farm-payments/check-selected-land-actions</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -492,7 +492,7 @@ synchronized (lock) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -502,7 +502,7 @@ synchronized (lock) {
             <intProp name="Assertion.test_type">34</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="402794602">(Submit your application|You must have consent)</stringProp>
             </collectionProp>
@@ -514,7 +514,7 @@ synchronized (lock) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/you-must-have-consent">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/you-must-have-consent" enabled="true">
           <stringProp name="HTTPSampler.path">/farm-payments/you-must-have-consent</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -534,7 +534,7 @@ synchronized (lock) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -544,7 +544,7 @@ synchronized (lock) {
             <intProp name="Assertion.test_type">34</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="-712689717">Submit your application</stringProp>
             </collectionProp>
@@ -556,7 +556,7 @@ synchronized (lock) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/submit-your-application">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /farm-payments/submit-your-application" enabled="true">
           <stringProp name="HTTPSampler.path">/farm-payments/submit-your-application</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -605,7 +605,7 @@ synchronized (lock) {
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Clear Application State" enabled="true">
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/farm-payments/clear-application-state</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -618,7 +618,7 @@ synchronized (lock) {
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -656,7 +656,7 @@ synchronized (lock) {
         <boolProp name="useGroupName">true</boolProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
